@@ -1,0 +1,49 @@
+version: '2.2'
+
+services:
+  vpn-server:
+    build:
+      context: service/ovpn
+    container_name: vpn-server
+    volumes:
+      - ./service/ovpn/team1:/etc/openvpn
+    ports:
+      - "1194:1194/udp"
+    cap_add:
+      - NET_ADMIN
+    restart: always
+    networks:
+      default:
+      internal-net:
+
+  server:
+    build:
+      context: service/server
+    container_name: server
+    environment:
+      - FLAG=Cup{m17m_15_50_51mp13_bd93321786df}
+      - PORT=443
+    networks:
+      internal-net:
+        ipv4_address: 10.13.37.10
+  client:
+    build:
+      context: service/client
+    container_name: client
+    environment:
+      - FLAG=Cup{m17m_15_50_51mp13_bd93321786df}
+      - URL=https://10.13.37.10/metrics
+    networks:
+      internal-net:
+        ipv4_address: 10.13.37.13
+
+networks:
+  internal-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.13.37.0/24
+
+  default:
+    driver: bridge

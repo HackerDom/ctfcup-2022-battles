@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  pwn:
+    build: deploy
+    restart: on-failure
+    ports:
+        - 17172:31337
+    stop_grace_period: 3s
+    mem_limit: 1024M
+    memswap_limit: 1024M
+    cpu_count: 1
+    pids_limit: 512
+    ulimits: 
+      nofile:
+        soft: 8192
+        hard: 8192

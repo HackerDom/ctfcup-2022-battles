@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "localstack"
+    image: localstack/localstack:latest
+    environment:
+      - AWS_DEFAULT_REGION=eu-west-1
+      - PERSISTENCE=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - SERVICES=sqs,s3
+    volumes:
+      - "./data/volume}:/var/models/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./localstack_bootstrap:/docker-entrypoint-initaws.d/"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./cmd/api/Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - localstack
+
+  worker:
+    build:
+      context: .
+      dockerfile: ./cmd/worker/Dockerfile
+    environment:
+      - CTFCUP_FLAG=Cup{0h_senpa1_mY_quEeEuEeE_fu11_0f_messages}
+    restart: always
+    depends_on:
+      - localstack

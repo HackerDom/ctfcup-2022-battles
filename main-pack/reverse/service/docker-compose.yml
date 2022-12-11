@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  checker:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      FLAG: "Cup{uNd3rst4nding_LOg1c_gaTes_R3QUIRE_l0GiCal_thinking}"

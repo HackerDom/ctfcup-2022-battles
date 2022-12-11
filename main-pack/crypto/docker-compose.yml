@@ -1,0 +1,9 @@
+version: '2.4'
+
+services:
+  babyrsa-2022:
+    build: deploy
+    ports:
+      - 17171:31337
+    environment:
+      - FLAG=Cup{sorry_I_did_not_understand_what_RSA_CRT_means}
