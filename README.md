@@ -23,7 +23,7 @@
 | pwn       | [**heap-plus-plus**](main-pack/pwn)         | [@keltecc](https://github.com/keltecc) |
 | reverse   | [**LogicCTF**](main-pack/reverse)           | [@zarix908](https://github.com/zarix908) |
 | stegano   | [**hyper-nano**](main-pack/stegano)         | [@AlexanderKargin](https://github.com/AlexanderKargin) |
-| stegano   | [**amazing_notes**](main-pack/web)          | [@capitanbanana](https://github.com/capitanbanana) |
+| web       | [**amazing_notes**](main-pack/web)          | [@capitanbanana](https://github.com/capitanbanana) |
 
 
 
