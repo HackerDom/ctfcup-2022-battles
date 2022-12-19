@@ -17,8 +17,16 @@ vector<uint8_t> read_from(const char* path) {
     ifstream input(path);
     if (input.fail()) {
         cout << "read file \"" << path << "\" failed" << endl;
+        exit(1);
     }
-    return vector<uint8_t>(istreambuf_iterator<char>(input), {});
+
+    auto input_buf = vector<uint8_t>(istreambuf_iterator<char>(input), {});
+    if (input_buf.size() > 100) {
+        cout << "Wrong answer!" << endl;
+        exit(1);
+    }
+ 
+    return input_buf; 
 }
 
 int main() {
